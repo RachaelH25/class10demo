@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Audio/visual/grid demo</title>
+    </head>
+    <body>
+        <header>
+            <h1>Audio Visual elements</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Audio</h2>
+                <audio id="audio-id" src="#" controls autoplay muted loop></audio>
+                <ul>
+                    <li>Autoplay: Boolean, use sparingly</li>
+                    <li>Controls: provide playback controls for the user</li>
+                    <li>Loop: boolean, will play audio over and over</li>
+                    <li>Muted: boolean, used to mute the audio on the page</li>
+                    <li>src: links to the audio source file</li>
+                    <li>Volume: ranges from 0.0 (silent) to 1.0 (loudest)</li>
+                </ul>
+                <button id="randomizer">Click this button to randomly adjust the volume.</button>
+            </section>
+            <section>
+                <h2>Video</h2>
+                <video id="videoname" src="#" width="50%" height="220px" controls></video>
+                <ul>
+                    <li>Autoplay: boolean, use sparingly</li>
+                    <li>Controls: provide playback controls</li>
+                    <li>Height: must be an absolute value, no percentage</li>
+                    <li>Muted: boolean, used to mute the page on load</li>
+                    <li>Poster: use an alternative image in place of the first frame before playback has initialised</li>
+                    <li>src: links to the media source file.</li>
+                    <li>Volume: ranges from 0.0 to 1.0</li>
+                    <li>Width: can be an absolute value or a percentage</li>
+                </ul>
+            </section>
+        </main>
+        <footer></footer>
+        <script src="scripts.js"></script>
+    </body>
+</html>
