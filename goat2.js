@@ -38,6 +38,7 @@ function renderGoats() {
     state.allGoatsArray[goat1].views++;
     state.allGoatsArray[goat2].views++;
     console.log(state.allGoatsArray[goat1]);
+    console.log("renderGoats");
 }
 
 function handleGoatClick(event) {
@@ -54,7 +55,7 @@ function handleGoatClick(event) {
     }
     if (clicks === maxClicksAllowed) {
         goatContainer.removeEventListener("click", handleGoatClick);
-        resultButton.addEventListener("click", renderResults);
+        resultButton.addEventListener("click", renderChart);
         // resultButton.className = "clicks-allowed";
         goatContainer.className = "no-voting";
     } else {
@@ -62,14 +63,62 @@ function handleGoatClick(event) {
     }
 }
 
-function renderResults() {
-    let ul = document.querySelector("ul");
-    for (let i = 0; i < state.allGoatsArray; i++) {
-        let li = document.createElement("li");
-        li.textContent = `${state.allGoatsArray[i].name} had ${state.allGoatsArray[i].views} views and was clicked ${state.allGoatsArray[i].clicks} times.`;
-        ul.appendChild(li);
+// function renderResults() {
+//     let ul = document.querySelector("ul");
+//     for (let i = 0; i < state.allGoatsArray; i++) {
+//         let li = document.createElement("li");
+//         li.textContent = `${state.allGoatsArray[i].name} had ${state.allGoatsArray[i].views} views and was clicked ${state.allGoatsArray[i].clicks} times.`;
+//         ul.appendChild(li);
+//     }
+// }
+
+function renderChart() {
+    const labelArray = [];
+    const clicksArray = [];
+    const viewsArray = [];
+
+    for (let i = 0; i < state.allGoatsArray.length; i++) {
+        let thisGoat = state.allGoatsArray[i];
+        labelArray.push(thisGoat.name);
+        clicksArray.push(thisGoat.clicks);
+        viewsArray.push(thisGoat.views);
     }
 }
+
+const data = {
+    labels: labelArray,
+    datasets: [
+        {
+            label: "Views",
+            data: viewsArray,
+            backgroundColor: ["teal"],
+            borderColor: ["tomato"],
+            borderWidth: 2,
+        },
+        {
+            label: "Clicks",
+            data: clicksArray,
+            backgroundColor: ["tomato"],
+            borderColor: ["teal"],
+            borderWidth: 2,
+        },
+    ],
+};
+
+const config = {
+    type: "bar",
+    data: data,
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+            },
+        },
+        // indexAxis: "y",
+    },
+};
+const canvasChart = document.getElementById("myChart");
+newChart(canvasChart, config);
 
 let cruising = new Goat("Cruising Goat", "./images/cruisin-goat.jpg");
 let float = new Goat("Float Your Goat", "./images/float-your-goat.jpg");
